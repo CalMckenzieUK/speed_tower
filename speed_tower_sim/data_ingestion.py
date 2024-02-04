@@ -1,0 +1,17 @@
+#ingest data from tppc_moves_data.json & tppc_pokemon_data.json
+
+import json
+import pandas as pd
+
+def ingest_data():
+    with open('./data/tppc_move_data.json') as f:
+        moves_data = json.load(f)
+    with open('./data/tppc_poke_data.json') as f:
+        pokemon_data = json.load(f)
+    return moves_data, pokemon_data
+
+
+if __name__ == '__main__':
+    moves_data, pokemon_data = ingest_data()
+    print(moves_data)
+    print(pokemon_data)
