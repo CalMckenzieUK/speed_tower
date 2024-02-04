@@ -13,7 +13,8 @@ class pokemon_init:
                      type2: str = None, 
                      item: str = None,
                      moves: list[str] = None,
-                     sdg: str = None):
+                     sdg: str = None,
+                     level: int = None):
             
                 self.name = name
                 self.type1 = type1
@@ -26,7 +27,7 @@ class pokemon_init:
                 self.type2 = type2
                 self.item = item
                 self.moves = moves
-                self.level = 100
+                self.level = level
 
                 if sdg == 'Shiny':
                         self.hp = hp+5
