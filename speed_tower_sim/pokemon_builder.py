@@ -16,20 +16,22 @@ class pokemon_init:
                      item: str = None,
                      moves: list[str] = None,
                      sdg: str = None,
-                     level: int = None):
+                     level: int = None,
+                     ap_boost: int = 1):
             
                 self.name = name
                 self.type1 = type1
-                self.hp = hp
-                self.attack = attack
-                self.defence = defence
-                self.special_attack = special_attack
-                self.special_defence = special_defence
-                self.speed = speed
+                self.hp = hp*ap_boost
+                self.attack = attack*ap_boost
+                self.defence = defence*ap_boost
+                self.special_attack = special_attack*ap_boost
+                self.special_defence = special_defence*ap_boost
+                self.speed = speed*ap_boost
                 self.type2 = type2
                 self.item = item
                 self.moves = moves
                 self.level = level
+                
 
                 if sdg == 'Shiny':
                         self.hp = hp+5
@@ -41,11 +43,11 @@ class pokemon_init:
 
                 elif sdg == 'Dark':
                         self.hp = hp+15
-                        self.attack = attack+15
-                        self.defence = defence+15
-                        self.special_attack = special_attack+15
-                        self.special_defence = special_defence+15
-                        self.speed = speed+15
+                        self.attack = attack-5
+                        self.defence = defence-5
+                        self.special_attack = special_attack-5
+                        self.special_defence = special_defence-5
+                        self.speed = speed-5
                 
                 elif sdg == 'Golden':
                         self.hp = hp+15
@@ -70,9 +72,9 @@ class pokemon_init:
                         self.attack = attack*1.5
                         self.special_attack = special_attack*1.5
 
-def build_pokemon(name, held_item=None, sgd=None, moves: list[str] = ['Giga Drain', 'Ice Ball', 'Ancientpower', 'Earthquake'], level: int = 100):
+def build_pokemon(name, held_item=None, sgd=None, moves: list[str] = ['Giga Drain', 'Ice Ball', 'Ancientpower', 'Earthquake'], level: int = 100, ap_boost: int = 1):
     value = pokemon_data[name]
-    built_pokemon = pokemon_init(name, str(value).replace("['",'').split(' ')[0], value[1], value[2], value[3], value[4], value[5], value[6], str(value).replace("',",'').split(' ')[1] if len(str(value).split(' ')) > 1 else None, item=held_item, moves=moves, sdg=sgd, level=level)
+    built_pokemon = pokemon_init(name, str(value).replace("['",'').split(' ')[0], value[1], value[2], value[3], value[4], value[5], value[6], str(value).replace("',",'').split(' ')[1] if len(str(value).split(' ')) > 1 else None, item=held_item, moves=moves, sdg=sgd, level=level, ap_boost=ap_boost)
     return built_pokemon
 
 if __name__ == "__main__":

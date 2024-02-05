@@ -39,8 +39,10 @@ def battle_setup(attacking_pokemon: str
             , atk_level: int = 100
             , def_level: int = 100
             , atk_sgd: str = None
-            , def_sgd: str = None):
-    attacker = build_pokemon(attacking_pokemon, held_item='Power Boost', sgd=atk_sgd, moves=moves, level=atk_level)
+            , def_sgd: str = None
+            , ap_boost: int = 1
+            , item: str = None):
+    attacker = build_pokemon(attacking_pokemon, held_item=item, sgd=atk_sgd, moves=moves, level=atk_level, ap_boost=ap_boost)
     defender = build_pokemon(defending_pokemon, sgd=def_sgd, level=def_level)
     damage, move_used = attack_setup(attacker)    
     defence = defence_setup(defender, move_used)
