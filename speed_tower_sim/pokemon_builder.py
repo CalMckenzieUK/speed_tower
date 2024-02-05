@@ -72,10 +72,10 @@ class pokemon_init:
                         self.attack = attack*1.5
                         self.special_attack = special_attack*1.5
 
-def build_pokemon(name, held_item=None, sgd=None, moves: list[str] = ['Giga Drain', 'Ice Ball', 'Ancientpower', 'Earthquake'], level: int = 100, ap_boost: int = 1):
+def build_pokemon(name, moves, held_item=None, sgd=None, level: int = 100, ap_boost: int = 1):
     value = pokemon_data[name]
     built_pokemon = pokemon_init(name, str(value).replace("['",'').split(' ')[0], value[1], value[2], value[3], value[4], value[5], value[6], str(value).replace("',",'').split(' ')[1] if len(str(value).split(' ')) > 1 else None, item=held_item, moves=moves, sdg=sgd, level=level, ap_boost=ap_boost)
     return built_pokemon
 
 if __name__ == "__main__":
-    print(build_pokemon('Bulbasaur').attack)
+    print(build_pokemon('Bulbasaur').moves)

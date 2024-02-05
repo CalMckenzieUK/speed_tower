@@ -4,6 +4,10 @@ from data_ingestion import ingest_data
 import pandas as pd
 
 moves_data, pokemon_data = ingest_data()[0:2]
+attacking_moves = ['Close Combat', 
+                   'Giga Drain', 
+                   'Close Combat', 
+                   'Agility']
 normal_shiny_dark_golden = ['Normal',
                             'Dark',
                              'Shiny']
@@ -33,7 +37,7 @@ def battle_loop_sim():
             for type in normal_shiny_dark_golden:
                 for boost in ancientpower_boosts:
                     for item in attacker_items:
-                        setup = battle_setup('Arceus (Normal)', pokemon, atk_level=attacker_level, def_level=int(attacker_level*level), atk_sgd=attacker_type, def_sgd=type, ap_boost=boost, item=item)
+                        setup = battle_setup('Arceus (Normal)', pokemon, moves=attacking_moves, atk_level=attacker_level, def_level=int(attacker_level*level), atk_sgd=attacker_type, def_sgd=type, ap_boost=boost, item=item)
                         battle_outcome = battle_run(setup[0], setup[1], setup[2])
                         if battle_outcome == 1:
                             one_hit_ko_array.append([pokemon, attacker_level*level, type, boost, item])
@@ -47,7 +51,7 @@ if __name__ == '__main__':
     power_boost = df[df['Item'] == 'Power Boost']
     life_orb = df[df['Item'] == 'Life Orb']
     elemental_stone = df[df['Item'] == 'Elemental Stone']
-    print(power_boost.sort_values(by='Ancientpower Boosts', ascending=False))
+    print(life_orb.sort_values(by='Level', ascending=False))
 
 
 
