@@ -1,7 +1,4 @@
-#ingest data from tppc_moves_data.json & tppc_pokemon_data.json
-
 import json
-import pandas as pd
 
 def ingest_data():
     with open('./data/tppc_move_data.json') as f:
@@ -11,7 +8,6 @@ def ingest_data():
     with open('./data/weakness_matrix.json') as f:
         weakness_matrix = json.load(f)
     return moves_data, pokemon_data, weakness_matrix
-
 
 if __name__ == '__main__':
     moves_data, pokemon_data, weakness_matrix = ingest_data()

@@ -13,7 +13,7 @@ def attack_setup(attacking_pokemon):
     spec_phys_output = ''
     for move in attacking_pokemon.moves:
         spec_phys_stat = attacking_pokemon.special_attack if moves_data[move]['movetype'] == 'Special' else attacking_pokemon.attack
-        move_damage = ((attacking_pokemon.attack + 46.875) * (level/50) + 5)
+        move_damage = ((spec_phys_stat + 46.875) * (level/50) + 5) * moves_data[move]['power']
         spec_phys_output = 'Special' if moves_data[move]['movetype'] == 'Special' else 'Physical'
         move_used = move if move_damage > damage else move_used
         attack_type = spec_phys_stat if move_damage > damage else attack_type
@@ -48,4 +48,4 @@ def battle_setup(attacking_pokemon: str
     defence = defence_setup(defender, move_used)
     mods_list = modifiers(move_used, attacker, defender)
     mods_sum = mods_list['stab'] * mods_list['weakness'] * mods_list['item'] * mods_list['extra']
-    return damage, defence, mods_sum
+    return damage, defence, mods_sum, move_used
